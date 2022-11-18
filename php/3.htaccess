@@ -1,0 +1,12 @@
+
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteCond %{HTTP_HOST} ^dotoxygen\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.dotoxygen\.com$
+RewriteRule ^/?$ "https\:\/\/dotoxygen\.com\/" [R=301,L]
+
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
