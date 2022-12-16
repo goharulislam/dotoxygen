@@ -36,10 +36,6 @@ if($function != ""){
         case "search_heading":
             create_post($cn);
         break;
-        case "schedule_call":
-            schedule_call($cn, $a);
-            contact_us($cn, $a);
-        break;
         case "login":
             login($cn, $a, $b);
         break;
@@ -228,74 +224,15 @@ $to_email = $a["to_email"];
 // CRLF Injection attack protection
 $name = strip_crlf($name);
 $email = strip_crlf($email);
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "The email address is invalid.";
     } else {
-        // appending \r\n at the end of mailheaders for end
-        $mailHeaders = "From: " . $name . "<" . $email . ">\r\n";
-        if(mail($toEmail, $subject, $content, $mailHeaders)){
+    // appending \r\n at the end of mailheaders for end
+    $mailHeaders = "From: " . $name . "<" . $email . ">\r\n";
+        if(mail($toEmail, $subject, $content, $mailHeaders)) {
             $message = "Your contact information is received successfully.";
             $type = "success";
         }
     }
-/*===*/
-$to = 'user@example.com';
-$from = 'sender@example.com';
-$fromName = 'SenderName';
-$subject = "Send HTML Email in PHP by CodexWorld";
-$htmlContent = '
-    <html> 
-    <head> 
-        <title>Welcome to CodexWorld</title> 
-    </head> 
-    <body> 
-        <h1>Thanks you for joining with us!</h1> 
-        <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
-            <tr> 
-                <th>Name:</th><td>CodexWorld</td> 
-            </tr> 
-            <tr style="background-color: #e0e0e0;"> 
-                <th>Email:</th><td>contact@codexworld.com</td> 
-            </tr> 
-            <tr> 
-                <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
-            </tr> 
-        </table> 
-    </body> 
-    </html>'; 
- 
-// Set content-type header for sending HTML email 
-$headers = "MIME-Version: 1.0" . "\r\n"; 
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
- 
-// Additional headers 
-$headers .= 'From: '.$fromName.'<'.$from.'>' . "\r\n"; 
-$headers .= 'Cc: welcome@example.com' . "\r\n"; 
-$headers .= 'Bcc: welcome2@example.com' . "\r\n"; 
- 
-// Send email 
-if(mail($to, $subject, $htmlContent, $headers)){ 
-    echo 'Email has sent successfully.'; 
-}else{ 
-   echo 'Email sending failed.'; 
-}
-}
-
-function schedule_call($cn, $a){
-
-$sql = "INSERT INTO schedule_call(full_name, email, guest_emails, company, phone, call_date) VALUES (:full_name, :email, :guest_emails, :company, :phone, :call_date)";
-$stmt = $cn->prepare($sql);
-$stmt->bindParam(':full_name', $a["full_name"]);
-$stmt->bindParam(':email', $a["email"]);
-$stmt->bindParam(':guest_emails', $a["guest_emails"]);
-$stmt->bindParam(':company', $a["company"]);
-$stmt->bindParam(':phone', $a["phone"]);
-$stmt->bindParam(':call_date', $a["call_date"]);
-if($stmt->execute()){
-    $response = ['status' => 1, 'message' => 'Record created successfully.'];
-} else {
-    $response = ['status' => 0, 'message' => 'Failed to create record.'];
-}
-echo json_encode($response);
 }
 ?>
