@@ -29,7 +29,7 @@ return(
 <div className="container">
 <div className="row">
 <div className="col-md-12">
-<button onClick={()=>navigate(-1)} className="btn btn-secondary float-end">Back</button>
+<button onClick={()=>navigate('/blog')} className="btn btn-secondary float-end">Back</button>
 <table>
   <thead>
   <tr>
