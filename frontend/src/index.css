@@ -340,6 +340,13 @@ footer .follow a:hover{/*background-position:100% 100%; /*OR bottom right*/ bord
 
 .modal.fade:not(.show).bottom-right .modal-dialog{-webkit-transform:translate3d(25%, 25%, 0); transform:translate3d(25%, 25%, 0);}
 
+.contact1{position:fixed; bottom:70px; right:30px; width:80px; height:80px; border-radius:50%; background-color:#111; transition:width 0.5s, height 0.5s; cursor:pointer;}
+.contact2{position:fixed; bottom:0; right:0; border-radius:0; background-color:#111; transition:width 0.5s, height 0.5s; width:100vw; height:100vh;}
+.contact1 div{border-radius:0; width:100%; line-height:80px; text-align:center;}
+.contact1 div .fa{color:#FFF; font-size:25px;}
+.contact1 div#close1{display:none;}
+.contact1 div#close1 button{cursor:pointer; position:fixed; bottom:70px; right:30px;}
+
 /*MediaQuery*/
 @media(min-width:767px) and (max-width:4000px){
 
