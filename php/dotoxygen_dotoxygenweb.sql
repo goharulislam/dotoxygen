@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 24, 2022 at 09:51 AM
--- Server version: 5.7.39
--- PHP Version: 7.4.30
+-- Host: localhost
+-- Generation Time: Nov 03, 2022 at 12:58 PM
+-- Server version: 10.6.10-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,11 +32,11 @@ CREATE TABLE `posts` (
   `post_id` int(11) NOT NULL,
   `author` varchar(50) NOT NULL,
   `date` varchar(50) NOT NULL,
-  `heading` text,
-  `text` text,
+  `heading` text DEFAULT NULL,
+  `text` text DEFAULT NULL,
   `image1` varchar(100) DEFAULT NULL,
-  `tags` text,
-  `updated` timestamp(5) NOT NULL DEFAULT CURRENT_TIMESTAMP(5) ON UPDATE CURRENT_TIMESTAMP(5),
+  `tags` text DEFAULT NULL,
+  `updated` timestamp(5) NOT NULL DEFAULT current_timestamp(5) ON UPDATE current_timestamp(5),
   `created` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -106,6 +105,43 @@ INSERT INTO `posts_media` (`id`, `post_id`, `url`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `schedule_call`
+--
+
+CREATE TABLE `schedule_call` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `guest_emails` varchar(200) NOT NULL,
+  `company` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `call_date` varchar(100) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schedule_call`
+--
+
+INSERT INTO `schedule_call` (`id`, `full_name`, `email`, `guest_emails`, `company`, `phone`, `call_date`, `created`) VALUES
+(1, 'Gohar ul Islam', 'gohar@gmail.com', 'gohar@gmail.com', 'Gigs', '+923331234567', 'Tue Oct 25 2022 22:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(2, 'Gohar ul Islam', 'gg@bb.com', 'gg@bb.com', 'Gigs', '+923350244179', 'Wed Nov 02 2022 21:00:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(3, 'Gohar ul Islam', 'gg@bb.com', 'aa', 'Gigs', '+923350244179', 'Fri Oct 28 2022 20:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(4, 'Gohar ul Islam', 'gg@bb.com', 'aaa', 'Gigs', '+923350244179', 'Fri Oct 28 2022 20:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(5, 'Gohar ul Islam', 'gohar@gmail.com', 'aa', 'Gigs', '+923350244179', 'Fri Oct 28 2022 21:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(6, 'Gohar ul Islam', 'gohar@gmail.com', 'aa', 'Gigs', '+923350244179', 'Fri Oct 28 2022 21:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(7, 'Gohar ul Islam', 'gg@bb.com', 'aa', 'Gigs', '+923350244179', 'Fri Oct 28 2022 21:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(8, 'Gohar ul Islam', 'gg@bb.com', 'aa', 'Gigs', '+923350244179', 'Fri Oct 28 2022 22:00:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(9, '', '', '', '', '', 'Fri Oct 28 2022 22:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(10, 'Gohar ul Islam', 'gg@bb.com', 'aa', 'Gigs', '+923350244179', 'Sat Oct 29 2022 21:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(11, 'Gohar ul Islam', 'gg@bb.com', 'aa@gg.com', 'Gigs', '+923350244179', 'Thu Nov 03 2022 00:00:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(12, 'Gohar ul Islam', 'gg@bb.com', 'aa', 'Gigs', '+923350244179', 'Thu Nov 03 2022 00:00:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(13, 'Gohar ul Islam', 'gg@bb.com', 'aa', 'Gigs', '+923350244179', 'Tue Nov 01 2022 00:00:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44'),
+(14, 'Gohar ul Islam', 'gg@bb.com', 'aaa', 'Gigs', '+923350244179', 'Thu Nov 03 2022 11:30:00 GMT+0500 (Pakistan Standard Time)', '2022-11-02 14:29:44');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -141,6 +177,12 @@ ALTER TABLE `posts_media`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `schedule_call`
+--
+ALTER TABLE `schedule_call`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -155,6 +197,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
+--
+-- AUTO_INCREMENT for table `schedule_call`
+--
+ALTER TABLE `schedule_call`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
