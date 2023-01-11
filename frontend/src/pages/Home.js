@@ -8,6 +8,7 @@ import Upnext from '../components/Upnext';
 import Home2 from '../components/Home2';
 import man1 from '../images/man1.jpg';
 import woman1 from '../images/woman1.jpg';
+import ContactModal from "../components/ContactModal";
 
 function Home(){
 const navigate = useNavigate();
@@ -58,6 +59,10 @@ function checkCookie() {
 return(
 <div>
 <section className="home1">
+{/** MODAL */}
+<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Launch static backdrop modal</button>
+<ContactModal />
+{/** END MODAL */}
 <div className="container">
 <div className="row">
 <div className="col-md-10">
